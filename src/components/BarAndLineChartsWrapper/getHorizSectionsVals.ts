@@ -126,11 +126,13 @@ export const getHorizSectionVals = (props: horizSectionPropTypes) => {
       )
     }
 
+    const displayValue = yAxisOffset !== undefined ? value + yAxisOffset : value;
+    
     horizSections.push({
       value: yAxisLabelTexts?.length
         ? yAxisLabelTexts[noOfSections + noOfSectionsBelowXAxis - i] ??
-          value.toString()
-        : value.toString()
+          displayValue.toString()
+        : displayValue.toString()
     })
   }
 
@@ -143,11 +145,14 @@ export const getHorizSectionVals = (props: horizSectionPropTypes) => {
           value.toFixed(roundToDigits ?? AxesAndRulesDefaults.roundToDigits)
         )
       }
+      
+      const displayValue = yAxisOffset !== undefined ? value + yAxisOffset : value;
+      
       horizSectionsBelow.push({
         value: props.yAxisLabelTexts
           ? props.yAxisLabelTexts[noOfSectionsBelowXAxis - i] ??
-            value.toString()
-          : value.toString()
+            displayValue.toString()
+          : displayValue.toString()
       })
     }
   }
@@ -171,13 +176,16 @@ export const getHorizSectionVals = (props: horizSectionPropTypes) => {
           )
         )
       }
+      
+      const displayValue = secondaryYAxisConfig.yAxisOffset !== undefined ? value + secondaryYAxisConfig.yAxisOffset : value;
+      
       secondaryHorizSections.push({
         value: secondaryYAxisConfig.yAxisLabelTexts?.length
           ? secondaryYAxisConfig.yAxisLabelTexts[
               i + (secondaryYAxisConfig.noOfSectionsBelowXAxis ?? 0)
               // - noOfSectionsBelowXAxis - 1
-            ] ?? value.toString()
-          : value.toString()
+            ] ?? displayValue.toString()
+          : displayValue.toString()
       })
     }
   }
@@ -199,10 +207,13 @@ export const getHorizSectionVals = (props: horizSectionPropTypes) => {
           )
         )
       }
+      
+      const displayValue = secondaryYAxisConfig.yAxisOffset !== undefined ? value + secondaryYAxisConfig.yAxisOffset : value;
+      
       secondaryHorizSectionsBelow.push({
         value: secondaryYAxisConfig.yAxisLabelTexts?.length
-          ? secondaryYAxisConfig.yAxisLabelTexts[i - 1] ?? value.toString()
-          : value.toString()
+          ? secondaryYAxisConfig.yAxisLabelTexts[i - 1] ?? displayValue.toString()
+          : displayValue.toString()
       })
     }
   }
